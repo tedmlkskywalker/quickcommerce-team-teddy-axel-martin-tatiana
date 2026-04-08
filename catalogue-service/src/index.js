@@ -30,7 +30,14 @@ app.get('/health', async (req, res) => {
 // Routes produits - APPELER LA FONCTION avec db
 const productsRoutes = require('./routes/products');
 app.use('/products', productsRoutes(db)); // ← PASSER db ICI
-
+app.get('/version', (req, res) => {
+  res.json({
+    service: 'catalogue',
+    version: '1.0.1',
+    team: 'QuickCommerce Team Teddy-Axel-Martin-Tatiana',
+    date: new Date().toISOString()
+  });
+});
 app.listen(PORT, () => {
   console.log(`📦 Catalogue Service - Port ${PORT}`);
 });
